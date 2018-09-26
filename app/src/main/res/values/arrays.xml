@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="order">array
+        <item>ترتيب حسب</item>
+        <item>موعد التقديم: الأقرب</item>
+        <item>موعد التقديم: الأحدث </item>
+        <item>تاريخ النشر: الأقدم</item>
+        <item>تاريخ النشر: الأحدث</item>
+
+    </string-array>
+    <string-array name="sort" >
+        <item>فرص متاحة</item>
+        <item>فرص مميزة دائما </item>
+        <item>فرص مميزة</item>
+
+
+
+    </string-array>
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    card_view:cardCornerRadius="5dp"
+
+    card_view:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp" >
+
+        <TextView
+            android:id="@+id/mFilterSort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="filter"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+        <net.igenius.customcheckbox.CustomCheckBox
+            android:id="@+id/mChkSelected"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            app:color_checked="@android:color/transparent"
+            app:color_tick="@color/colorPrimary"
+            app:color_unchecked_stroke="@color/colorAccent"
+            app:small_tick="false" />
+
+
+
+
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
