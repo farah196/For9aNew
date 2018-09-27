@@ -27,7 +27,7 @@ class Filter : AppCompatActivity(), OnTabSelectListener {
 
              "الدول", "الفئة", "التخصص")
 
-    private var mAdapter: FilterAdapter? = null
+    private var mAdapter: MyFilterAdapter? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +54,7 @@ class Filter : AppCompatActivity(), OnTabSelectListener {
 
         val vp = ViewFindUtils().find<ViewPager>(decorView, R.id.viewpager_filter)
 
-        mAdapter = FilterAdapter(supportFragmentManager)
+        mAdapter = MyFilterAdapter(supportFragmentManager)
 
         vp!!.setAdapter(mAdapter)
         tabs_filter.setViewPager(vp)
@@ -65,55 +65,6 @@ class Filter : AppCompatActivity(), OnTabSelectListener {
         vp.setCurrentItem(1)
     }
 
-
-    override fun onTabSelect(position: Int) {
-
-        Toast.makeText(mContext, "onTabSelect&position--->$position", Toast.LENGTH_SHORT).show()
-
-    }
-
-
-    override fun onTabReselect(position: Int) {
-
-        Toast.makeText(mContext, "onTabReselect&position--->$position", Toast.LENGTH_SHORT).show()
-
-    }
-
-
-    private inner class FilterAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
-
-
-        override fun getCount(): Int {
-
-            return mSpecialities.size
-
-        }
-
-
-        override fun getPageTitle(position: Int): CharSequence? {
-
-            return mTitles[position]
-
-        }
-
-
-        override fun getItem(position: Int): Fragment {
-
-            return mSpecialities[position]
-
-        }
-
-
-
-
-
-    }
-
-    private fun initActionBar() {
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowHomeEnabled(true)
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
-    }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
@@ -126,4 +77,66 @@ class Filter : AppCompatActivity(), OnTabSelectListener {
         }
         return super.onOptionsItemSelected(item)
     }
-}
+
+
+    override fun onTabSelect(position: Int) {
+
+    }
+        override fun onTabReselect(position: Int) {
+
+            Toast.makeText(mContext, "onTabReselect&position--->$position", Toast.LENGTH_SHORT).show()
+
+        }
+
+
+        private inner class MyFilterAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+
+
+            override fun getCount(): Int {
+
+                return mSpecialities.size
+
+            }
+
+
+            override fun getPageTitle(position: Int): CharSequence? {
+
+                return mTitles[position]
+
+            }
+
+
+            override fun getItem(position: Int): Fragment {
+
+                return when (position) {
+                    0 -> {
+                        mSpecialities[position]
+                    }
+                    1 -> {
+                        mCategory[position]
+
+
+                    }
+                    2 -> {
+                        mCountries[position]
+                    }
+
+
+                    else -> mSpecialities[position]
+
+                }
+
+
+            }
+
+
+        }
+    private fun initActionBar() {
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+    }
+    }
+
+
+

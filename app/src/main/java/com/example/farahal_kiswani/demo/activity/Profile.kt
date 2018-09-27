@@ -12,6 +12,8 @@ import android.view.MenuItem
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.widget.Toast
+import com.example.farahal_kiswani.demo.Home
+import com.example.farahal_kiswani.demo.Learn
 import com.example.farahal_kiswani.demo.R
 import com.example.farahal_kiswani.demo.fragment.Null
 import com.example.farahal_kiswani.demo.fragment.Null1
@@ -64,20 +66,15 @@ class Profile : AppCompatActivity(), OnTabSelectListener , AppBarLayout.OnOffset
 
         }
 
-
-        val decorView = window.decorView
-
-        val vp = ViewFindUtils().find<ViewPager>(decorView, R.id.viewpager_profile)
-
         mAdapter = MyPagerAdapter(supportFragmentManager)
 
-        vp!!.setAdapter(mAdapter)
-        tabs_profile.setViewPager(vp!!)
+        viewpager_profile!!.setAdapter(mAdapter)
+        tabs_profile.setViewPager(viewpager_profile)
         tabs_profile.setOnTabSelectListener(this)
         tabs_profile.showDot(4)
         tabs_profile.showMsg(3,5)
         tabs_profile.setMsgMargin(3, 0.0F, 10F)
-        vp.setCurrentItem(1)
+        viewpager_profile.setCurrentItem(1)
     }
 
 
@@ -114,7 +111,25 @@ class Profile : AppCompatActivity(), OnTabSelectListener , AppBarLayout.OnOffset
 
         override fun getItem(position: Int): Fragment {
 
-            return mPinned[position]
+            return when (position) {
+                0 -> {
+                  mPinned[position]
+                }
+                1 -> {
+                    mNull1[position]
+
+
+                }
+                2->
+                {
+                    mNull2[position]
+                }
+                3->
+                {
+                    mNull3[position]
+                }
+                else -> mPinned[position]
+            }
 
         }
 
