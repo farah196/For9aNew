@@ -12,14 +12,14 @@ class TabPagerAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> {
-                Learn.newInstance()
+                Home.newInstance()
             }
             1 -> {
-                Home.newInstance()
+               Learn.newInstance()
 
 
             }
-            else -> Learn.newInstance()
+            else -> Home.newInstance()
         }
     }
 
@@ -29,8 +29,8 @@ class TabPagerAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
 
     override fun getPageTitle(position: Int): CharSequence? {
         when (position) {
-            0 -> return "تعلم"
-            1 -> return "فرص"
+            0 -> return "فرص"
+            1 -> return "تعلم"
 
         }
         return null

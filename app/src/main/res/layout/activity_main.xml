@@ -24,6 +24,7 @@
                 android:id="@+id/main_collapsing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
                 <RelativeLayout
@@ -35,10 +36,10 @@
                     <android.support.v7.widget.Toolbar
                         android:id="@+id/toolbar_main"
                         android:layout_width="match_parent"
-                        app:contentInsetStartWithNavigation="0dp"
                         android:layout_height="?attr/actionBarSize"
+                        android:background="@color/colorPrimary"
 
-                        android:background="@color/colorPrimary">
+                        app:contentInsetStartWithNavigation="0dp">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -50,8 +51,8 @@
                                 android:layout_width="25dp"
                                 android:layout_height="30dp"
                                 android:layout_alignParentLeft="true"
-                                android:background="@color/transparent"
                                 android:layout_marginTop="5dp"
+                                android:background="@color/transparent"
                                 android:src="@drawable/filter"
                                 tools:ignore="ContentDescription" />
 
@@ -96,37 +97,35 @@
                         android:layout_below="@+id/toolbar_main"
                         android:background="@color/white"
                         android:orientation="horizontal"
-                        android:paddingTop="5dp"
-                        >
+                        android:paddingTop="5dp">
 
                         <ImageButton
+                            android:id="@+id/mListIcon"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:id="@+id/mListIcon"
                             android:background="@color/transparent"
                             android:src="@drawable/list" />
 
                         <ImageButton
+                            android:id="@+id/mGridIcon"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:id="@+id/mGridIcon"
                             android:background="@color/transparent"
                             android:src="@drawable/grid" />
 
 
-
                         <Spinner
+                            android:id="@+id/mSpinner"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/mSpinner"
                             android:entries="@array/order"
 
                             />
 
                         <Spinner
+                            android:id="@+id/mSpinner2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/mSpinner2"
                             android:entries="@array/sort"
 
                             />
@@ -167,25 +166,28 @@
             </android.support.design.widget.CollapsingToolbarLayout>
 
 
+            <android.support.v7.widget.RecyclerView
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/mFilterRecycler"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white">
+                android:id="@+id/mFilterRecycler"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="wrap_content"
 
-                </android.support.v7.widget.RecyclerView>
+             >
+
+            </android.support.v7.widget.RecyclerView>
 
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:layoutDirection="rtl"
                 android:background="@color/white" />
 
 
         </android.support.design.widget.AppBarLayout>
+
         <android.support.v7.widget.RecyclerView
 
             android:id="@+id/mSearchList"
@@ -194,16 +196,16 @@
             android:layout_height="match_parent"
             android:layout_marginTop="100dp"
 
-
+            android:visibility="gone"
 
 
             />
+
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
 
 
     </android.support.design.widget.CoordinatorLayout>
