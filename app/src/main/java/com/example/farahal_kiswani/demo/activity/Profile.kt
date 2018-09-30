@@ -4,7 +4,6 @@ import android.support.design.widget.AppBarLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
@@ -12,14 +11,11 @@ import android.view.MenuItem
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.widget.Toast
-import com.example.farahal_kiswani.demo.Home
-import com.example.farahal_kiswani.demo.Learn
 import com.example.farahal_kiswani.demo.R
 import com.example.farahal_kiswani.demo.fragment.Null
 import com.example.farahal_kiswani.demo.fragment.Null1
 import com.example.farahal_kiswani.demo.fragment.Null2
 import com.example.farahal_kiswani.demo.fragment.Pinned
-import com.example.farahal_kiswani.demo.util.ViewFindUtils
 import com.flyco.tablayout.listener.OnTabSelectListener
 import kotlinx.android.synthetic.main.profile_activity.*
 

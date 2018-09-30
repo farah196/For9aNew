@@ -4,18 +4,12 @@ import android.animation.Animator
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.example.farahal_kiswani.demo.R
-import com.example.farahal_kiswani.demo.MainActivity
 import android.content.Intent
 import android.support.v4.app.ActivityCompat
 import android.util.Log
 import kotlinx.android.synthetic.main.splash_activity.*
-import com.example.farahal_kiswani.demo.R.id.imageView
-import android.support.v4.view.ViewCompat
 import android.support.v4.app.ActivityOptionsCompat
 import android.view.View
-import com.example.farahal_kiswani.demo.R.id.imageView
-
-
 
 
 class Splash : AppCompatActivity() {

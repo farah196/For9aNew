@@ -27,30 +27,58 @@ class CategoryFilterAdapter(val mFilterList: ArrayList<String>) : RecyclerView.A
 //        gradientDrawable.setColor(Color.parseColor("#ff22ff"))
 //
 
-        val mRandom = Random()
-        val colors: MutableList<String>
+//        val mRandom = Random()
+//        val colors: MutableList<String>
+//
+//        colors = ArrayList()
+//
+//        colors.add("#827f93")
+//        colors.add("#c467f4")
+//        colors.add("#3b9aee")
+//        colors.add("#9bc53d")
+//        colors.add("#f4a261")
+//        colors.add("#1ed2bb")
+//        colors.add("#778da9")
+//        colors.add("#20bf55")
+//        colors.add("#9f9fed")
+//        colors.add("#fc6177")
+//        colors.add("#bcbcbc")
+//
+//
+//        val position = mRandom.nextInt(11 - 0) + 0
+//        p0.card.setCardBackgroundColor(Color.parseColor(colors.get(position)))
+         when (p1) {
+            0 -> {
+                p0.card.setCardBackgroundColor(Color.parseColor("#827f93"))
+            }
+            1 -> {
+                p0.card.setCardBackgroundColor(Color.parseColor("#c467f4"))
 
-        colors = ArrayList()
+            }
+            2 -> {
+                p0.card.setCardBackgroundColor(Color.parseColor("#3b9aee"))
+            }
+             3 -> {
+                 p0.card.setCardBackgroundColor(Color.parseColor("#9bc53d"))
+             }
+             4 -> {
+                 p0.card.setCardBackgroundColor(Color.parseColor("#f4a261"))
+             }
+             5 -> {
+                 p0.card.setCardBackgroundColor(Color.parseColor("#1ed2bb"))
+             }
+             6 -> {
+                 p0.card.setCardBackgroundColor(Color.parseColor("#778da9"))
+             }
+             7 -> {
+                 p0.card.setCardBackgroundColor(Color.parseColor("#20bf55"))
+             }
 
-        colors.add("#827f93")
-        colors.add("#c467f4")
-        colors.add("#3b9aee")
-        colors.add("#9bc53d")
-        colors.add("#f4a261")
-        colors.add("#1ed2bb")
-        colors.add("#778da9")
-        colors.add("#20bf55")
-        colors.add("#9f9fed")
-        colors.add("#fc6177")
-        colors.add("#bcbcbc")
 
+            else ->  p0.card.setCardBackgroundColor(Color.parseColor("#9f9fed"))
 
-//        val draw = GradientDrawable()
-//        draw.shape = GradientDrawable.()
-        val position = mRandom.nextInt(11 - 0) + 0
+        }
 
-
-        p0.card.setCardBackgroundColor(Color.parseColor(colors.get(position)))
 
 
 

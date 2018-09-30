@@ -102,12 +102,14 @@
                         <ImageButton
                             android:layout_width="30dp"
                             android:layout_height="30dp"
+                            android:id="@+id/mListIcon"
                             android:background="@color/transparent"
                             android:src="@drawable/list" />
 
                         <ImageButton
                             android:layout_width="30dp"
                             android:layout_height="30dp"
+                            android:id="@+id/mGridIcon"
                             android:background="@color/transparent"
                             android:src="@drawable/grid" />
 

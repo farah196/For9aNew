@@ -3,9 +3,8 @@ package com.example.farahal_kiswani.demo.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import com.example.farahal_kiswani.demo.Home
+import com.example.farahal_kiswani.demo.fragment.Home
 import com.example.farahal_kiswani.demo.Learn
-import com.example.farahal_kiswani.demo.Search
 
 class TabPagerAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
 

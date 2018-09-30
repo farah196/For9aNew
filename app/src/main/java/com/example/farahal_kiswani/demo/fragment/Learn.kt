@@ -1,6 +1,5 @@
 package com.example.farahal_kiswani.demo
 
-
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -12,13 +11,10 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.example.farahal_kiswani.demo.models.Blog.Blogs
 import kotlinx.android.synthetic.main.learn_fragment.*
-
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
 class Learn : Fragment() {
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -31,18 +27,26 @@ class Learn : Fragment() {
     var adapter: BlogAdapter = BlogAdapter(ArrayList())
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //adding a layoutmanager
-        mBlogRecycler.layoutManager = LinearLayoutManager(view.context, LinearLayout.VERTICAL, false) as RecyclerView.LayoutManager?
+
+
+        mBlogRecycler.layoutManager = LinearLayoutManager(view.context, LinearLayout.VERTICAL, false)
+
+
         mBlogRecycler.adapter = adapter
+
         getLearnList()
-        println(adapter.infoList.size-1)
+        println(adapter.infoList.size - 1)
         mBlogRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-             // if ((mBlogRecycler.getLayoutManager() as LinearLayoutManager).findLastCompletelyVisibleItemPosition() ==adapter.itemCount-1) {
+                if ((recyclerView.getLayoutManager() as LinearLayoutManager).findLastCompletelyVisibleItemPosition() == adapter.itemCount - 1) {
+
                     getLearnList()
 
+                }
             }
+
+
         })
 
     }
@@ -71,10 +75,10 @@ class Learn : Fragment() {
                 }
 
             }
+
             override fun onFailure(call: Call<List<Blogs>>, t: Throwable) {
                 Log.i("blogerror", "Blog Error")
             }
-
 
 
         })
@@ -86,5 +90,6 @@ class Learn : Fragment() {
             return Learn()
         }
     }
+
 }
 

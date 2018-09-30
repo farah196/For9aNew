@@ -1,43 +1,44 @@
-package com.example.farahal_kiswani.demo
+package com.example.farahal_kiswani.demo.activity
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.TabLayout
 import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBar
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.util.Log
 
 import android.view.View
 import android.view.Window
-import android.widget.LinearLayout
-import android.widget.SearchView
-import android.widget.Toast
-import com.example.farahal_kiswani.demo.activity.Favorite
-import com.example.farahal_kiswani.demo.activity.Profile
+import android.widget.*
+import com.example.farahal_kiswani.demo.ApiService
+import com.example.farahal_kiswani.demo.adapter.OpportunityAdapter
+import com.example.farahal_kiswani.demo.R
 import com.example.farahal_kiswani.demo.adapter.CategoryFilterAdapter
 import com.example.farahal_kiswani.demo.adapter.TabPagerAdapter
+import com.example.farahal_kiswani.demo.controller.ActivityCallBack
 import kotlinx.android.synthetic.main.activity_main.*
-import com.example.farahal_kiswani.demo.activity.Filter
 import com.example.farahal_kiswani.demo.models.Opportunity
 import com.example.farahal_kiswani.demo.models.TimelineResponse2
 import com.example.farahal_kiswani.demo.util.ApiClient
-import kotlinx.android.synthetic.main.search_fragment.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ActivityCallBack {
+
+
 
     val oppertinuitySearchList = ArrayList<Opportunity>()
     var sinceIdString = ""
-    var adapter: Adapter = Adapter(ArrayList())
+    var opportunityAdapter: OpportunityAdapter = OpportunityAdapter(ArrayList())
     override fun onCreate(savedInstanceState: Bundle?) {
         window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
 
@@ -111,6 +112,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
     }
 
     private fun setCategoryFilter() {
@@ -144,8 +146,8 @@ class MainActivity : AppCompatActivity() {
 
         mSearchList.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
 
-        adapter = Adapter(oppertinuitySearchList)
-        mSearchList.adapter = adapter
+        opportunityAdapter = OpportunityAdapter(oppertinuitySearchList)
+        mSearchList.adapter = opportunityAdapter
         mSearchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener, android.support.v7.widget.SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(newText: String): Boolean {
@@ -163,7 +165,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun Request(term :String) {
+    private fun Request(term: String) {
         val apiServices = ApiClient.client.create(ApiService::class.java)
 
         val call = apiServices.getSearch(10, sinceIdString, term);
@@ -173,12 +175,12 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
 
                     if (!response.body()?.results!!.isEmpty()) {
-                        adapter.updateDataset(response.body()?.results!!)
-                        sinceIdString = adapter.infoList.get(adapter.infoList.size - 1).id.toString()
+                        opportunityAdapter.updateDataset(response.body()?.results!!)
+                        sinceIdString = opportunityAdapter.infoList.get(opportunityAdapter.infoList.size - 1).id.toString()
 
                     } else {
                         //Hanndle empty dataaset
-                        adapter.updateDataset(ArrayList())
+                        opportunityAdapter.updateDataset(ArrayList())
 
 
                     }
@@ -198,8 +200,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-        private fun Context.toast(message: String) {
+    private fun Context.toast(message: String) {
         Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 
@@ -208,4 +209,18 @@ class MainActivity : AppCompatActivity() {
         super.onBackPressed()
         finish()
     }
+
+    override fun ListIcon(recycler : RecyclerView){
+        return mListIcon.setOnClickListener {
+            recycler.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+
+        }
+    }
+    override fun GridIcon(recycler: RecyclerView) {
+        return mGridIcon.setOnClickListener {
+            recycler.layoutManager =  GridLayoutManager(this, 2, GridLayout.VERTICAL, false)
+
+        }
+    }
+
 }

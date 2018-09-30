@@ -20,8 +20,7 @@ class FilterAdapter(val mFilterList: ArrayList<String>) : RecyclerView.Adapter<F
         p0.name.text = mFilterList[p1]
 
 
-   //    p0.check.setChecked(false,true)
-
+        p0.check.setChecked(false, true)
 
 
     }
@@ -39,6 +38,6 @@ class FilterAdapter(val mFilterList: ArrayList<String>) : RecyclerView.Adapter<F
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val name: TextView = itemView.findViewById<TextView>(R.id.mFilterSort)
-     //   val check: CustomCheckBox = itemView.findViewById<CustomCheckBox>(R.id.mChkSelected)
+        val check: CustomCheckBox = itemView.findViewById<CustomCheckBox>(R.id.mChkSelected)
     }
 }

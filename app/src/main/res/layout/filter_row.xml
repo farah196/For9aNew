@@ -18,7 +18,7 @@
             android:id="@+id/mFilterSort"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
             android:text="filter"
             android:textColor="@android:color/black"
             android:textSize="18sp" />

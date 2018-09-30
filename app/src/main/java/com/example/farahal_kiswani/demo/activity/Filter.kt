@@ -40,9 +40,10 @@ class Filter : AppCompatActivity(), OnTabSelectListener {
         for (item in mTitles) {
 
 
-            mSpecialities.add(Specialities.getInstance())
-            mCategory.add(Category.getInstance())
+
             mCountries.add(Countries.getInstance())
+            mCategory.add(Category.getInstance())
+            mSpecialities.add(Specialities.getInstance())
 
 
         }
@@ -50,19 +51,16 @@ class Filter : AppCompatActivity(), OnTabSelectListener {
 
 
 
-        val decorView = window.decorView
-
-        val vp = ViewFindUtils().find<ViewPager>(decorView, R.id.viewpager_filter)
 
         mAdapter = MyFilterAdapter(supportFragmentManager)
 
-        vp!!.setAdapter(mAdapter)
-        tabs_filter.setViewPager(vp)
+        viewpager_filter!!.setAdapter(mAdapter)
+        tabs_filter.setViewPager(viewpager_filter)
         tabs_filter.setOnTabSelectListener(this)
 
 
         tabs_filter.setMsgMargin(3, 0.0F, 10F)
-        vp.setCurrentItem(1)
+        viewpager_filter.setCurrentItem(1)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -110,7 +108,7 @@ class Filter : AppCompatActivity(), OnTabSelectListener {
 
                 return when (position) {
                     0 -> {
-                        mSpecialities[position]
+                        mCountries[position]
                     }
                     1 -> {
                         mCategory[position]
@@ -118,7 +116,7 @@ class Filter : AppCompatActivity(), OnTabSelectListener {
 
                     }
                     2 -> {
-                        mCountries[position]
+                        mSpecialities[position]
                     }
 
 

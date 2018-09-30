@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.SearchView
+import com.example.farahal_kiswani.demo.adapter.OpportunityAdapter
 import com.example.farahal_kiswani.demo.models.Opportunity
 import com.example.farahal_kiswani.demo.models.TimelineResponse2
 
@@ -31,15 +32,15 @@ class Search : Fragment() {
 
         return view
     }
-    var adapter:Adapter = Adapter(ArrayList())
+    var opportunityAdapter: OpportunityAdapter = OpportunityAdapter(ArrayList())
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         //adding a layoutmanager
         mSearchRecycler.layoutManager = LinearLayoutManager(view.context, LinearLayout.VERTICAL, false)
 
-        adapter = Adapter(oppertinuitySearchList)
-        mSearchRecycler.adapter = adapter
+        opportunityAdapter = OpportunityAdapter(oppertinuitySearchList)
+        mSearchRecycler.adapter = opportunityAdapter
         no_result.setVisibility(View.GONE)
         search_bar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
@@ -81,12 +82,12 @@ class Search : Fragment() {
                 if (response.isSuccessful){
 
                     if (!response.body()?.results!!.isEmpty()){
-                        adapter.updateDataset(response.body()?.results!!)
-                        sinceIdString = adapter.infoList.get(adapter.infoList.size - 1).id.toString()
+                        opportunityAdapter.updateDataset(response.body()?.results!!)
+                        sinceIdString = opportunityAdapter.infoList.get(opportunityAdapter.infoList.size - 1).id.toString()
                         no_result.setVisibility(View.GONE)
                     } else{
                         //Hanndle empty dataaset
-                        adapter.updateDataset(ArrayList())
+                        opportunityAdapter.updateDataset(ArrayList())
                         no_result.setVisibility(View.VISIBLE)
 
 
