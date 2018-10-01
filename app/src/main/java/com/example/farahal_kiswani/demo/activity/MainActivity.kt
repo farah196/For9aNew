@@ -2,6 +2,7 @@ package com.example.farahal_kiswani.demo.activity
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
@@ -17,12 +18,14 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.*
+import com.allattentionhere.fabulousfilter.AAH_FabulousFragment
 import com.example.farahal_kiswani.demo.ApiService
 import com.example.farahal_kiswani.demo.adapter.OpportunityAdapter
 import com.example.farahal_kiswani.demo.R
 import com.example.farahal_kiswani.demo.adapter.CategoryFilterAdapter
 import com.example.farahal_kiswani.demo.adapter.TabPagerAdapter
 import com.example.farahal_kiswani.demo.controller.ActivityCallBack
+import com.example.farahal_kiswani.demo.fragment.MyFabFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import com.example.farahal_kiswani.demo.models.Opportunity
 import com.example.farahal_kiswani.demo.models.TimelineResponse2
@@ -32,13 +35,15 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class MainActivity : AppCompatActivity(), ActivityCallBack {
+class MainActivity : AppCompatActivity(), ActivityCallBack, AAH_FabulousFragment.Callbacks, AAH_FabulousFragment.AnimationListener {
+    override fun onResult(result: Any?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
 
+    var dialogFrag: MyFabFragment? = null
+    var dialogFrag1: MyFabFragment? = null
 
-    val oppertinuitySearchList = ArrayList<Opportunity>()
-    var sinceIdString = ""
-    var opportunityAdapter: OpportunityAdapter = OpportunityAdapter(ArrayList())
     override fun onCreate(savedInstanceState: Bundle?) {
         window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
 
@@ -50,11 +55,20 @@ class MainActivity : AppCompatActivity(), ActivityCallBack {
         setSupportActionBar(toolbar)
 
 
+        dialogFrag1 = MyFabFragment.newInstance()
+        dialogFrag1!!.setParentFab(mFabButton1)
+        mFabButton1.setOnClickListener(
+                object : View.OnClickListener {
+                    override fun onClick(v: View) {
+                        dialogFrag1!!.show(getSupportFragmentManager(), dialogFrag1!!.getTag())
+                    }
+                })
+
+
+
         setViewPagerAdapter()
         setCategoryFilter()
-        mSearchBar.setOnClickListener {
-            Search()
-        }
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
@@ -142,62 +156,7 @@ class MainActivity : AppCompatActivity(), ActivityCallBack {
 
     }
 
-    private fun Search() {
 
-        mSearchList.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
-
-        opportunityAdapter = OpportunityAdapter(oppertinuitySearchList)
-        mSearchList.adapter = opportunityAdapter
-        mSearchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener, android.support.v7.widget.SearchView.OnQueryTextListener {
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                return false
-            }
-
-            override fun onQueryTextSubmit(query: String): Boolean {
-                sinceIdString = ""
-                Request(query)
-                //Task HERE
-                return false
-            }
-
-        })
-    }
-
-
-    private fun Request(term: String) {
-        val apiServices = ApiClient.client.create(ApiService::class.java)
-
-        val call = apiServices.getSearch(10, sinceIdString, term);
-
-        call.enqueue(object : Callback<TimelineResponse2> {
-            override fun onResponse(call: Call<TimelineResponse2>, response: Response<TimelineResponse2>) {
-                if (response.isSuccessful) {
-
-                    if (!response.body()?.results!!.isEmpty()) {
-                        opportunityAdapter.updateDataset(response.body()?.results!!)
-                        sinceIdString = opportunityAdapter.infoList.get(opportunityAdapter.infoList.size - 1).id.toString()
-
-                    } else {
-                        //Hanndle empty dataaset
-                        opportunityAdapter.updateDataset(ArrayList())
-
-
-                    }
-
-                }
-
-
-            }
-
-            override fun onFailure(call: Call<TimelineResponse2>?, t: Throwable?) {
-                Log.i("search", "Response Error")
-            }
-
-        })
-
-
-    }
 
 
     private fun Context.toast(message: String) {
@@ -222,5 +181,38 @@ class MainActivity : AppCompatActivity(), ActivityCallBack {
 
         }
     }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        if (dialogFrag!!.isAdded()) {
+            dialogFrag!!.dismiss()
+            dialogFrag!!.show(supportFragmentManager, dialogFrag!!.getTag())
+        }
+        if (dialogFrag1!!.isAdded()) {
+            dialogFrag1!!.dismiss()
+            dialogFrag1!!.show(supportFragmentManager, dialogFrag1!!.getTag())
+        }
+
+    }
+
+    override fun onOpenAnimationStart() {
+        Log.d("aah_animation", "onOpenAnimationStart: ")
+    }
+
+    override fun onOpenAnimationEnd() {
+        Log.d("aah_animation", "onOpenAnimationEnd: ")
+
+    }
+
+    override fun onCloseAnimationStart() {
+        Log.d("aah_animation", "onCloseAnimationStart: ")
+
+    }
+
+    override fun onCloseAnimationEnd() {
+        Log.d("aah_animation", "onCloseAnimationEnd: ")
+
+    }
+
 
 }

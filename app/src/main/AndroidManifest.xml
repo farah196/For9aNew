@@ -16,7 +16,7 @@
         <activity android:name=".activity.Filter"/>
         <activity android:name=".activity.MainActivity"
             />
-        <activity android:name=".activity.Splash"
+        <activity android:name=".activity.OpportunityActivity"
             android:theme="@style/AppFullScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

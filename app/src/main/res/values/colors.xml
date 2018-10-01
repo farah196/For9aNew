@@ -68,5 +68,13 @@
     </array>
 
 
+    <color name="filtersfab">#e7e6e6</color>
+    <color name="filters_header">#E46300</color>
+    <color name="filters_buttons">#339eba</color>
+    <color name="filters_buttons_selected">#E46300</color>
+    <color name="filters_chips">#b3e5fc</color>
+
+    <color name="orange">#ff5722</color>
+    <color name="brown">#795548</color>
 </resources>
 

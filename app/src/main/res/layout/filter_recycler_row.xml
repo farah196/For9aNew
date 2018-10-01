@@ -7,17 +7,18 @@
     android:layout_width="80dp"
     android:layout_height="30dp"
     android:layout_marginLeft="5dp"
+    android:clipToPadding="false"
+    android:elevation="3dp"
     app:cardBackgroundColor="@color/colorPrimary"
-android:clipToPadding="false"
-app:cardPreventCornerOverlap="false"
     app:cardCornerRadius="13dp"
-android:elevation="3dp"
+    app:cardPreventCornerOverlap="false"
     app:cardUseCompatPadding="false"
 
     >
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/mFilterName"
@@ -32,7 +33,7 @@ android:elevation="3dp"
             />
 
 
-</RelativeLayout>
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>
 
